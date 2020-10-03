@@ -6,6 +6,7 @@
     <button @click="aumentar">Aumentar</button>
     <button @click="contador2++">Aumentar 2</button>
     <button @click="diminuir">Diminuir</button>
+    <button @click="showAlert">Mostrar valor</button>
     <p>Contador : {{contador}} | {{contador2}}</p>
     <p>Resultado : {{resultado}}</p>
 </div>
@@ -50,6 +51,9 @@
             diminuir(){
                 this.contador--
             },
+            showAlert(){
+                alert(this.contador)
+            }
         }
     })
 </script>
