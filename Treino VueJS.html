@@ -1,0 +1,59 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <!-- É possível utilizar tanto o 'v-on' quanto o '@' -->
+    <!-- Também é possível substituir o 'v-bind' por '' -->
+    <button @click="aumentar">Aumentar</button>
+    <button @click="contador2++">Aumentar 2</button>
+    <button @click="diminuir">Diminuir</button>
+    <button @click="showAlert">Mostrar valor</button>
+    <p>Contador : {{contador}} | {{contador2}}</p>
+    <p>Resultado : {{resultado}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+
+        data: {
+            contador: 0,
+            contador2: 0,
+        },
+
+        /* 
+        Diferente do methods, o computed é cacheado de acordo com suas dependências.
+        Um computed só será reavaliado quando alguma de suas dependências for alterada.
+        */ 
+
+        computed:{
+            resultado(){
+                return this.contador >= 5?
+                    'Maior ou igual a 5' : 'Menor que 5'
+            }
+        }, 
+
+        /*
+        Guarda métodos que são chamados quando houver mudança na variável 'contador'
+        */
+       
+        watch: {
+            contador(novo, antigo){
+                setTimeout(() =>{
+                    this.contador = 0
+                },2000)
+            }
+        }, 
+            
+        methods:{
+            aumentar(){
+                this.contador++
+            },
+            diminuir(){
+                this.contador--
+            },
+            showAlert(){
+                alert(this.contador)
+            }
+        }
+    })
+</script>
